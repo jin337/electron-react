@@ -1,17 +1,16 @@
 {
-  "name": "electron-vite-react",
+  "name": "electron-react",
   "private": true,
   "version": "0.0.0",
   "main": "app/index.js",
-  "description": "a app for electron vite react",
+  "description": "this is electron-react demo",
+  "author": "You (youux@outlook.com)",
   "license": "MIT",
   "scripts": {
-    "start": "npm run build && npm run electron:start",
-    "dev": "concurrently -k \"vite\" \"npm run electron:dev\"",
+    "dev": "concurrently -k \"vite\" \"npm run electron:start\"",
     "build": "vite build",
     "preview": "vite preview",
-    "electron:start": "cross-env IS_DEV=false electron-forge start",
-    "electron:dev": "cross-env IS_DEV=true electron-forge start",
+    "electron:start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
@@ -30,8 +29,8 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
     "concurrently": "^7.1.0",
-    "cross-env": "^7.0.3",
     "electron": "18.1.0",
+    "sass": "^1.51.0",
     "vite": "^2.9.5"
   },
   "config": {

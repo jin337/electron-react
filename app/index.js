@@ -1,40 +1,67 @@
 const path = require('path')
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 
 if (require('electron-squirrel-startup')) {
-  app.quit()
+	app.quit()
 }
 
-const isDev = process.env.IS_DEV === 'true'
+let mainWindow = null
+let newWin = null
 
-function createWindow() {
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true,
-    }
-  })
-  if (isDev) {
-    mainWindow.loadURL('http://localhost:3000')
-    mainWindow.webContents.openDevTools()
-  } else {
-    mainWindow.loadFile(path.join(__dirname, 'build', 'index.html'))
-  }
+const createWindow = () => {
+	mainWindow = new BrowserWindow({
+		width: 1210,
+		height: 800,
+		webPreferences: {
+			preload: path.join(__dirname, 'preload.js'),
+			nodeIntegration: true,
+			contextIsolation: false,
+		},
+	})
+	if (app.isPackaged) {
+		mainWindow.loadFile(path.join(__dirname, 'build', 'index.html'))
+	} else {
+		mainWindow.loadURL('http://localhost:3000')
+		mainWindow.webContents.openDevTools()
+	}
 }
 
 app.whenReady().then(() => {
-  createWindow()
-  app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
-    }
-  })
+	createWindow()
+	app.on('activate', () => {
+		if (BrowserWindow.getAllWindows().length === 0) {
+			createWindow()
+		}
+	})
 })
-
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+app.on('window-all-closed', () => {
+	if (process.platform !== 'darwin') {
+		app.quit()
+	}
+})
+ipcMain.on('applyStart', (event, data) => {
+	newWin = new BrowserWindow({
+		width: 375,
+		height: 872,
+		webPreferences: {
+			preload: path.join(__dirname, '../electron-preload/index.js'),
+			nodeIntegration: true,
+			contextIsolation: false,
+		},
+		useContentSize: true,
+		frame: false,
+	})
+	newWin.loadURL(`http://localhost:${process.env['VITE_DEV_SERVER_PORT']}/apply-start`)
+	newWin.webContents.openDevTools()
+	newWin.on('close', () => {
+		newWin = null
+	})
+})
+ipcMain.on('closeApplyStart', () => {
+	newWin.close()
+	newWin = null
+})
+ipcMain.on('closeApp', () => {
+	mainWindow.close()
+	mainWindow = null
 })
