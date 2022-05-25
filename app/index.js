@@ -161,7 +161,11 @@ const trayMenu = (app, mainWindow) => {
         label: '关于应用',
         click: () => {
           if (aboutWindow) {
-            aboutWindow.focus()
+            if (aboutWindow.isDestroyed()) {
+              aboutView()
+            } else {
+              aboutWindow.focus()
+            }
           } else {
             aboutView()
           }
