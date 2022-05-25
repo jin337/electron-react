@@ -4,7 +4,7 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  height: 220px;
+  height: 270px;
   text-align: center;
 
   -webkit-app-region: drag;
@@ -16,14 +16,17 @@
     right: 0;
     padding: 10px;
     cursor: pointer;
-    color: rgba(28, 31, 35, 0.6);
 
     -webkit-app-region: no-drag;
+    &:hover {
+      color: rgba(249, 249, 249, 0.6);
+      background-color: #ed4014;
+    }
   }
 }
 .logo {
   width: auto;
-  height: 100px;
+  height: 80px;
 }
 .version {
   font-size: 14px;
@@ -32,7 +35,7 @@
 .btn {
   margin-top: 10px;
   button {
-    padding: 2px 10px;
+    padding: 4px 10px;
     color: #fff;
     border: none;
     border-radius: 3px;

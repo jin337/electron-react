@@ -4,7 +4,7 @@
   align-items: center;
   flex-direction: row;
   justify-content: center;
-  height: 300px;
+  height: 400px;
   text-align: center;
   background-image: url('assets//image/bg.png');
   background-repeat: no-repeat;
@@ -20,18 +20,19 @@
     right: 0;
     padding: 10px;
     cursor: pointer;
-    color: rgba(249, 249, 249, 0.6);
 
     -webkit-app-region: no-drag;
+    &:hover {
+      color: rgba(249, 249, 249, 0.6);
+      background-color: #ed4014;
+    }
   }
 }
 ul {
   width: 70%;
   margin: 0 auto;
-
-  -webkit-app-region: no-drag;
   li {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     &:last-child {
       margin-bottom: 0;
     }
@@ -43,9 +44,15 @@ ul {
       border-radius: 3px;
       background-color: rgba(249, 249, 249, 0.3);
       box-shadow: 0 0 1px rgba(0, 0, 0, 0.3), 0 4px 14px rgba(0, 0, 0, 0.1);
+
+      -webkit-app-region: no-drag;
     }
     button {
       background-color: #fff;
+    }
+    .name {
+      font-size: 30px;
+      color: #fff;
     }
   }
 }

@@ -36,8 +36,8 @@ const mainView = () => {
 // 登录窗口-设置
 const loginView = () => {
   loginWindow = new BrowserWindow({
-    width: 420,
-    height: 300,
+    width: 360,
+    height: 400,
     frame: false,
     useContentSize: true,
     autoHideMenuBar: true,
@@ -59,8 +59,8 @@ const loginView = () => {
 // 关于窗口-设置
 const aboutView = () => {
   aboutWindow = new BrowserWindow({
-    width: 350,
-    height: 220,
+    width: 360,
+    height: 270,
     frame: false,
     useContentSize: true,
     autoHideMenuBar: true,
@@ -153,28 +153,19 @@ const trayMenu = (app, mainWindow) => {
   // 移动到托盘上的提示
   tray.setToolTip('electron+react')
 
-  // 主界面显示事件
-  const restoreApp = () => {
-    if (mainWindow.isMaximized()) {
-      mainWindow.maximize()
-    } else {
-      mainWindow.restore()
-    }
-
-    mainWindow.show()
-  }
-
   // 监听托盘右键事件
   tray.on('right-click', () => {
     // 右键菜单模板
     const tempate = [
       {
-        label: '打开应用',
-        click: () => restoreApp()
-      },
-      {
         label: '关于应用',
-        click: () => aboutView()
+        click: () => {
+          if (aboutWindow) {
+            aboutWindow.focus()
+          } else {
+            aboutView()
+          }
+        }
       },
       {
         label: '退出应用',
@@ -187,7 +178,15 @@ const trayMenu = (app, mainWindow) => {
     tray.popUpContextMenu(menuConfig)
   })
   // 监听点击托盘的事件
-  tray.on('click', () => restoreApp())
+  tray.on('click', () => {
+    if (mainWindow.isMaximized()) {
+      mainWindow.maximize()
+    } else {
+      mainWindow.restore()
+    }
+
+    mainWindow.show()
+  })
 }
 
 // 检查更新

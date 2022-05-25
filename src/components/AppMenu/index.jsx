@@ -56,7 +56,7 @@ const AppMenu = () => {
           <span onClick={reload}>&#x21bb;</span>
           <span onClick={minimize}>&#x2212;</span>
           {full ? <span onClick={fullscreen}>&#x274F;</span> : <span onClick={fullscreen}>&#x2610;</span>}
-          <span onClick={close}>&#xd7;</span>
+          <span className={styles.close} onClick={close}>&#xd7;</span>
         </div>
       </div>
     </div>

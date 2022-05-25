@@ -27,7 +27,8 @@ const Index = () => {
     <div className={styles.wrap}>
       <div className={styles.close} onClick={close}>&#xd7;</div>
       <img className={styles.logo} src={logo} alt="" />
-      <div className={styles.version}>Windows客户端 {version}</div>
+      <div className={styles.version}>Windows客户端</div>
+      <div className={styles.version}>版本： {version}</div>
       <div className={styles.btn}><button onClick={update}>检查更新</button></div>
     </div>
   )
