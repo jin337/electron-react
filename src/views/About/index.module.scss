@@ -1,0 +1,43 @@
+.wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 220px;
+  text-align: center;
+
+  -webkit-app-region: drag;
+  .close {
+    font-size: 26px;
+    line-height: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    cursor: pointer;
+    color: rgba(28, 31, 35, 0.6);
+
+    -webkit-app-region: no-drag;
+  }
+}
+.logo {
+  width: auto;
+  height: 100px;
+}
+.version {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.btn {
+  margin-top: 10px;
+  button {
+    padding: 2px 10px;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(0, 100, 250);
+
+    -webkit-app-region: no-drag;
+  }
+}

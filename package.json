@@ -1,25 +1,35 @@
 {
   "name": "electron-react",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "app/index.js",
   "description": "this is electron-react demo",
-  "author": "You (youux@outlook.com)",
+  "author": {
+    "name": "You",
+    "email": "youux@outlook.com"
+  },
   "license": "MIT",
   "scripts": {
     "dev": "concurrently -k \"vite\" \"npm run electron:start\"",
-    "build": "vite build",
+    "build": "vite build && npm run make",
     "preview": "vite preview",
     "electron:start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "prepare": "husky install",
+    "lint": "eslint --ext .js,.jsx src"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.3.0",
+    "redux": "^4.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@electron-forge/cli": "^6.0.0-beta.63",
     "@electron-forge/maker-deb": "^6.0.0-beta.63",
     "@electron-forge/maker-rpm": "^6.0.0-beta.63",
@@ -28,36 +38,40 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^1.3.0",
+    "autoprefixer": "^10.4.7",
+    "commitizen": "^4.2.4",
     "concurrently": "^7.1.0",
+    "cz-customizable": "^6.3.0",
     "electron": "18.1.0",
+    "eslint": "^8.15.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.1",
+    "postcss": "^8.4.14",
+    "postcss-preset-env": "^7.5.0",
     "sass": "^1.51.0",
-    "vite": "^2.9.5"
+    "stylelint": "^14.8.2",
+    "vite": "^2.9.5",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-optimize-persist": "^0.1.2",
+    "vite-plugin-package-config": "^0.1.1"
   },
   "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "wa"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".commitlintrc.js"
+    },
+    "forge": "./forge.config.js"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "npm run lint"
+    ]
   }
 }

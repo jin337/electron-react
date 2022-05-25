@@ -1,0 +1,48 @@
+.app-menu {
+  font-size: 0;
+  position: sticky;
+  z-index: 99;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+
+  -webkit-app-region: drag;
+}
+.header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 100%;
+  user-select: none;
+  white-space: nowrap;
+}
+.app-header {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  span {
+    font-size: 14px;
+  }
+  img {
+    height: 30px;
+    margin-right: 4px;
+  }
+}
+.handler {
+  font-size: 26px;
+  color: rgba(28, 31, 35, 0.6);
+
+  -webkit-app-region: no-drag;
+  span {
+    padding: 0 10px;
+    cursor: pointer;
+    &:hover {
+      color: #3295fb;
+    }
+  }
+}
