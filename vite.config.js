@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
+import { viteMockServe } from 'vite-plugin-mock'
 import compressionPlugin from 'vite-plugin-compression'
 import PkgConfig from 'vite-plugin-package-config'
 import OptimizationPersist from 'vite-plugin-optimize-persist'
@@ -37,6 +38,7 @@ export default defineConfig({
     react(),
     PkgConfig(),
     OptimizationPersist(),
-    compressionPlugin({ threshold: 10240 })
+    compressionPlugin({ threshold: 10240 }),
+    viteMockServe({ watchFiles: true })
   ]
 })
