@@ -9,12 +9,17 @@ import logo from 'assets/image/favicon.png'
 const { ipcRenderer } = require('electron')
 
 const Index = () => {
+  // 退出
+  const quit = () => {
+    ipcRenderer.invoke('loginQuit')
+  }
+  // 登录
   const login = () => {
     ipcRenderer.invoke('showMain')
   }
   return (
     <div className={styles.wrap}>
-      <div className={styles.close} onClick={close}>&#xd7;</div>
+      <div className={styles.close} onClick={quit}>&#xd7;</div>
       <ul>
         <li><img className={styles.logo} src={logo} alt="" /></li>
         <li><div className={styles.name}>登录</div></li>

@@ -105,13 +105,17 @@ app.on('window-all-closed', () => {
 /**
  * renderer层
  */
+// 未登录-退出
+ipcMain.handle('loginQuit', () => {
+  app.quit()
+})
 // 启动主应用
 ipcMain.handle('showMain', () => {
   loginWindow.close()
   mainView()
 })
-// 关闭
-ipcMain.handle('closeApp', () => {
+// 隐藏
+ipcMain.handle('hideApp', () => {
   mainWindow.hide()
 })
 // 刷新
